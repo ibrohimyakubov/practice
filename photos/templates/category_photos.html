@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for photo in photos %}
+                    <div class="col" style="margin-top: 60px">
+                        <div class="card h-100">
+                            <img src="{{ photo.image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><a
+                                        href="{% url 'photos-detail' photo.pk %}">{{ photo.title }}</a></h5>
+                                <h6 class="card-text">Category: {{ photo.category.name }}</h6>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">{{ photo.create_at }}</small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

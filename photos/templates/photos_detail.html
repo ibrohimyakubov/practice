@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+        <div class="col-md-6">
+            <div class="row">
+                <h2>{{ photos.title }}</h2>
+                <img src="{{ photos.image.url }}" alt="img">
+                <br>
+                <h4>category: {{ photos.category.name }}</h4>
+                <br>
+                <p>{{ photos.description }}</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

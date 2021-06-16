@@ -1,0 +1,31 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% for category in categories %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'category-photos' category.pk %}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form action="{% url 'search' %}" method="post">
+                {% csrf_token %}
+                <input id="query" name="query" class="input search-input" type="text" placeholder="Enter your keyword">
+                <select style="height: 32px;" name="catid" class="input search-categories">
+                    <option value="0">All Categories</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-dark">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
